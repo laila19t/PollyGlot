@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  font-family: 'Big Shoulders Display', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: whitesmoke;
 }
 
@@ -23,12 +23,15 @@ body {
   margin: 0;
   font-size: 28px;
   padding: 4.5rem 1.7rem 0rem;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 800;
 }
 
 .header>h3{
   color: whitesmoke;
   margin: 0;
   padding: .3rem 1.7rem 3rem;
+  font-weight: 400;
 }
 
 @media(min-width: 500px){
