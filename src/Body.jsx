@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import OpenAI from "openai";
 
-const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  });
 
 export default function Body() {
     const [formData, setFormData] = useState({
@@ -16,21 +12,17 @@ export default function Body() {
         e.preventDefault()
         console.log(formData)
         try{
-            const response = await openai.chat.completions.create({
-                model: "gpt-3.5-turbo",
-                messages: [
-                  {
-                    "role": "system",
-                    "content": "you are a helpful translator"
-                  },
-                  {
-                    "role": "user",
-                    "content": `translate to ${formData.language} the phrase '${formData.text}'`
-                  }
-                ],
+            const response = await fetch('http://localhost:8088/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             });
-            console.log(response.choices[0].message.content)
-            setTranslation(response.choices[0].message.content)
+
+            const data = await response.json();
+
+            setTranslation(data.translation);
         }catch(error){console.log(error)}
     }
 
